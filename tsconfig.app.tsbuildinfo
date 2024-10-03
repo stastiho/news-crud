@@ -1,0 +1,1 @@
+{"root":["./src/app/main.tsx","./src/app/store/redux.ts","./src/app/store/store.ts","./src/app/types/vite-env.d.ts","./src/pages/newappslice.ts","./src/pages/newsapp.tsx","./src/types/news.ts"],"version":"5.6.2"}
