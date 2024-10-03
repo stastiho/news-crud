@@ -1,15 +1,16 @@
 import { zodResolver } from '@hookform/resolvers/zod';
 import React, { useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { toast, ToastContainer } from 'react-toastify';
+import { useAppSelector } from '../app/store/redux';
 import { NewsItem, newsSchema } from '../types/news';
 import { addNews, deleteNews, updateNews } from './NewAppSlice';
 import s from './NewsApp.module.scss';
 
 const NewsApp: React.FC = () => {
   const dispatch = useDispatch();
-  const news = useSelector((state: RootState) => state.news.news);
+  const news = useAppSelector((state) => state.news.news);
 
   const [editId, setEditId] = useState<number | null>(null);
 
@@ -36,7 +37,7 @@ const NewsApp: React.FC = () => {
 
   const handleEdit = (id: number) => {
     setEditId(id);
-    const newsItem = news.find(item => item.id === id);
+    const newsItem = news.find((item: NewsItem) => item.id === id);
     if (newsItem) {
       reset(newsItem);
     }
@@ -65,7 +66,7 @@ const NewsApp: React.FC = () => {
         <button type="submit">{editId !== null ? 'Обновить' : 'Добавить'}</button>
       </form>
       <ul>
-        {news?.map((item) => (
+        {news?.map((item: NewsItem) => (
           <li key={item.id}>
             <h3>{item.title}</h3>
             <p>{item.content}</p>
