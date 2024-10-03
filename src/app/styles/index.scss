@@ -1,0 +1,11 @@
+@import "reset";
+@import "variables/global";
+
+.app {
+    font: var(--font-m);
+
+		background: linear-gradient(to right, #482525, #0000ff);
+    color: var(--primary-color);
+
+    min-height: 100vh;
+}
