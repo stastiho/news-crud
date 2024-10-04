@@ -15,11 +15,28 @@
     input,
     textarea {
       margin-bottom: 10px;
+			border: 1px solid  var(--primary-color);
+			border-radius: 5px;
+			padding-left: 8px;
     }
+
+		input::placeholder,
+		textarea::placeholder {
+  		color: var(--placeholder-color);
+		}
 
     button {
       align-self: flex-end;
+			background-color: var(--secondary-color);
+			border-radius: 5px;
+			border: none;
+			padding: 0.2em 1em;
+			color: var(--bg-color);
     }
+
+		span {
+			color: var(--error);
+		}
   }
 
   ul {
@@ -28,7 +45,8 @@
 
     li {
       margin: 10px 0;
-      border: 1px solid  var(--inverted-bg-color);
+      border: 1px solid  var(--primary-color);
+			background: var(--primary-color);
       padding: 10px;
       border-radius: 5px;
 
@@ -43,6 +61,11 @@
 
         button {
           margin-right: 10px;
+					background-color: var(--secondary-color);
+					border-radius: 5px;
+					border: none;
+					padding: 0.2em 1em;
+					color: var(--bg-color);
 
           &:last-child {
             margin-right: 0;

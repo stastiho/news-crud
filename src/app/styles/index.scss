@@ -3,9 +3,7 @@
 
 .app {
     font: var(--font-m);
-
-		background: linear-gradient(to right, #482525, #0000ff);
-    color: var(--primary-color);
-
+		background: var(--app-bg-color);
+    color: var(--color);
     min-height: 100vh;
 }
