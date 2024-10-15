@@ -8,7 +8,7 @@ import { NewsItem, newsSchema } from '../types/news';
 import { addNews, deleteNews, updateNews } from './NewAppSlice';
 import s from './NewsApp.module.scss';
 
-const NewsApp: React.FC = () => {
+const NewsApp: React.FC = ({ title, fields, items}) => {
   const dispatch = useDispatch();
   const news = useAppSelector((state) => state.news.news);
 
@@ -48,28 +48,37 @@ const NewsApp: React.FC = () => {
     toast.error("Новость успешно удалена!");
   };
 
-  return (
+	return (
     <div className={s.newsApp}>
-      <h1>Новости</h1>
+      <h1>{title}</h1>
       <form onSubmit={handleSubmit(onSubmit)}>
-        <input
-          type="text"
-          placeholder="Заголовок"
-          {...register("title")}
-        />
-        {errors.title && <span>{errors.title.message}</span>}
-        <textarea
-          placeholder="Контент"
-          {...register("content")}
-        />
-        {errors.content && <span>{errors.content.message}</span>}
+        {fields.map((field) => (
+          <div key={field.name}>
+            {field.type === 'textarea' ? (
+              <textarea
+                placeholder={field.placeholder}
+                {...register(field.name)}
+              />
+            ) : (
+              <input
+                type={field.type}
+                placeholder={field.placeholder}
+                {...register(field.name)}
+              />
+            )}
+            {errors[field.name] && <span>{errors[field.name].message}</span>}
+          </div>
+        ))}
         <button type="submit">{editId !== null ? 'Обновить' : 'Добавить'}</button>
       </form>
       <ul>
-        {news?.map((item: NewsItem) => (
+        {items?.map((item) => (
           <li key={item.id}>
-            <h3>{item.title}</h3>
-            <p>{item.content}</p>
+            {fields.map((field) => (
+              <div key={field.name}>
+                <strong>{field.label}:</strong> {item[field.name]}
+              </div>
+            ))}
             <div>
               <button onClick={() => handleEdit(item.id)}>Редактировать</button>
               <button onClick={() => handleDelete(item.id)}>Удалить</button>

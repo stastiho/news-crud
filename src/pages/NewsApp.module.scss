@@ -12,6 +12,10 @@
     display: flex;
     flex-direction: column;
 
+		div {
+			display: contents;
+		}
+
     input,
     textarea {
       margin-bottom: 10px;
@@ -50,12 +54,11 @@
       padding: 10px;
       border-radius: 5px;
 
-      h3,
-      p {
+      div {
         margin: 5px 0;
       }
 
-      div {
+      div:last-child {
         display: flex;
         justify-content: end;
 
